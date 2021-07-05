@@ -25,3 +25,12 @@ module.exports.create = async (req, res) => {
         return res.status(500).json({ message: err.message });
     }
 };
+module.exports.update = async (req, res) => {
+    try {
+        const task = await TaskService.update(req.body);
+        return res.status(200).json(task);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: err.message });
+    }
+};
