@@ -32,7 +32,7 @@ function Categories() {
     return (
         <div className = "categories">
             {loading && <h1>Loading....</h1>}
-            {categories.map(category => <CategoryDetails key = {category._id} category = {category}/>)}
+            {categories.length ?  categories.map(category => <CategoryDetails key = {category._id} category = {category}/>) : <p>No categories</p>}
             {error && <p>{error}</p>}
         </div>
     )
