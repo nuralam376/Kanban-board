@@ -1,0 +1,13 @@
+.categoryDetails {
+  border: 1px solid #000;
+  margin: 30px 5px;
+}
+
+.categoryName {
+  border-bottom: 1px solid #000;
+  background-color: #ff6347;
+  color: #444444;
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+}

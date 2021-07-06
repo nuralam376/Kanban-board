@@ -1,0 +1,7 @@
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  min-height: 1000px;
+  grid-gap: 10px;
+  justify-content: center;
+}

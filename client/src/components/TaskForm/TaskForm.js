@@ -11,6 +11,11 @@ function TaskForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(task === "")
+    {
+        alert("Task name is required");
+        return;
+    }
     try {
       const task = {
           name : e.target.task.value
@@ -19,6 +24,7 @@ function TaskForm() {
       if(response.status === 200)
       {
           alert("Task created successfully");
+          setTask("");
       }
     } catch (err) {
       alert(err.message);
