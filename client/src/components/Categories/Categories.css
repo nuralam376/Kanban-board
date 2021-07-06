@@ -1,13 +1,19 @@
 .categories {
   display: grid;
   grid-template-columns: repeat(3, 20%);
-  min-height: 500px;
   grid-gap: 10px;
   justify-content: center;
+  grid-template-rows: repeat(auto-fill, 500px);
 }
 
 @media (max-width: 768px) {
   .categories {
     grid-template-columns: repeat(2, 40%);
+  }
+}
+
+@media (max-width: 492px) {
+  .categories {
+    grid-template-columns: repeat(1, 50%);
   }
 }
