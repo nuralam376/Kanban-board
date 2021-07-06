@@ -9,3 +9,5 @@ module.exports.update = (task) =>
         // eslint-disable-next-line prettier/prettier
         'category',
     );
+
+module.exports.getTasksByCategory = (categoryId) => Task.find({ category: categoryId });

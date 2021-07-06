@@ -25,7 +25,8 @@ function Categories() {
 
     useEffect(() => {
         getCategories();
-    },[]);
+    },[]);   
+    
     const {categories, loading, error} = categoryState;
 
     return (

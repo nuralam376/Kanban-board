@@ -6,5 +6,6 @@ const categoryController = require('../controllers/category.controller');
 
 router.get('/', categoryController.getAll);
 router.post('/', categoryController.create);
+router.get('/tasks', categoryController.getTasks);
 
 module.exports = router;
