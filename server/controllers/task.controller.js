@@ -13,7 +13,6 @@ module.exports.getAll = async (req, res) => {
 };
 module.exports.create = async (req, res) => {
     try {
-        console.log(req.body);
         const todoCategory = await CategoryService.findToDoCategory();
         const newTask = {
             name: req.body.name,

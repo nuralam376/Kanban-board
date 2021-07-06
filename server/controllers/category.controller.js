@@ -22,7 +22,7 @@ module.exports.create = async (req, res) => {
 
 module.exports.getTasks = async (req, res) => {
     try {
-        const tasks = await taskService.getTasksByCategory(req.body.category_id);
+        const tasks = await taskService.getTasksByCategory(req.params.id);
         return res.status(200).json(tasks);
     } catch (err) {
         console.error(err);

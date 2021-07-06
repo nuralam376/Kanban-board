@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { NewTaskContext } from "../../App";
 import "./TaskForm.css";
 
 function TaskForm() {
   const [task, setTask] = useState("");
+  const {loadTask, setLoadTask} = useContext(NewTaskContext);
 
   const handleTaskName = (e) => {
     setTask(e.target.value);
@@ -25,6 +27,9 @@ function TaskForm() {
       {
           alert("Task created successfully");
           setTask("");
+          setLoadTask({
+            loadTask : !loadTask
+          });
       }
     } catch (err) {
       alert(err.message);

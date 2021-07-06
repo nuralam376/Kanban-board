@@ -10,4 +10,5 @@ module.exports.update = (task) =>
         'category',
     );
 
-module.exports.getTasksByCategory = (categoryId) => Task.find({ category: categoryId });
+module.exports.getTasksByCategory = (categoryId) =>
+    Task.find({ category: categoryId }).sort({ _id: -1 });

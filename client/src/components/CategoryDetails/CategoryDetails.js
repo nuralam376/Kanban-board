@@ -1,14 +1,49 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useCallback, useContext, useEffect, useReducer } from 'react';
+import { NewTaskContext } from '../../App';
+import { initialState, taskReducer } from "../reducers/TaskReducer";
+import Tasks from '../Tasks/Tasks';
 import "./CategoriesDetails.css";
 
 function CategoryDetails({category}) {
-    const {name} = category;
+    const {_id, name} = category;
+    const [taskState, taskDispatch] = useReducer(taskReducer,initialState);
+    const {loadTask}= useContext(NewTaskContext);
+
+    const getTasks = useCallback(async() => {
+            try
+            {
+                const response = await axios.get(`/categories/${_id}/tasks`);
+                
+                if(response.status === 200)
+                {
+                    taskDispatch({
+                        type : "success",
+                        payload : response.data
+                    });
+                }
+            }
+            catch(err)
+            {
+                taskDispatch({
+                    type : "failure",
+                });
+            }
+    },[_id]);
+  
+
+    useEffect(() => {
+        getTasks();
+    },[_id, getTasks, loadTask]);
+
+
     return (
-        <p className = "categoryDetails">
+        <div className = "categoryDetails">
             <span className = "categoryName">    
              {name}
             </span>
-        </p>
+            <Tasks taskState = {taskState}/>
+        </div>
     )
 }
 
