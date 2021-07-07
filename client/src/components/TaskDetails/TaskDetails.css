@@ -5,3 +5,7 @@
   padding: 10px;
   background-color: #dddddd;
 }
+
+.draggable {
+  opacity: 0.15;
+}

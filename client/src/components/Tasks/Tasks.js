@@ -1,16 +1,18 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NewTaskContext } from '../../App';
 import TaskDetails from '../TaskDetails/TaskDetails';
 import "./Tasks.css";
 
 function Tasks({taskState, category}) {
     const {tasks,loading, error} = taskState;
-    const {_id, name} = category;
-    const {loadTask, setLoadTask} = useContext(NewTaskContext)
+    const {_id} = category;
+    const {loadTask, setLoadTask} = useContext(NewTaskContext);
+    const [dragStart,setDragStart] = useState(null);
     
     const onDragStart = (e,id) => {
         e.dataTransfer.setData("id",id);
+        setDragStart(id);
     };
     
     const onDragOver = (e) => {
@@ -36,6 +38,7 @@ function Tasks({taskState, category}) {
         {
             alert("Something went wrong");
         }
+        setDragStart(null);
     }; 
 
     const onDrop = (e, categoryId) => {
@@ -45,7 +48,7 @@ function Tasks({taskState, category}) {
     };
     
         return (
-        <div className = {name}  onDragOver  = {(e) => onDragOver(e)} onDrop = {(e) => onDrop(e, _id)}>
+        <div className = "droppable"  onDragOver  = {(e) => onDragOver(e)} onDrop = {(e) => onDrop(e, _id)}>
             {loading && <h1>Loading ....</h1>}
             {tasks.length ? tasks.map(task => 
                     <TaskDetails 
@@ -54,6 +57,7 @@ function Tasks({taskState, category}) {
                         onDragStart = {onDragStart} 
                         onDragOver = {onDragOver}
                         onDrop = {onDrop}
+                        dragStart = {dragStart}
                     /> 
                 )
                     : <p>No Tasks</p>}
