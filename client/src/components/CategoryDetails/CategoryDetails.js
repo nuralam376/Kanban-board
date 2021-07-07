@@ -42,7 +42,7 @@ function CategoryDetails({category}) {
             <span className = "categoryName">    
              {name}
             </span>
-            <Tasks taskState = {taskState}/>
+            <Tasks taskState = {taskState} category = {category}/>
         </div>
     )
 }

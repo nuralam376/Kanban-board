@@ -1,26 +1,51 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
+import { NewTaskContext } from '../../App';
 import TaskDetails from '../TaskDetails/TaskDetails';
+import "./Tasks.css";
 
-function Tasks({taskState}) {
+function Tasks({taskState, category}) {
     const {tasks,loading, error} = taskState;
+    const {_id, name} = category;
+    const {loadTask, setLoadTask} = useContext(NewTaskContext)
     
-    const onDragStart = (e,taskName) => {
-        e.dataTransfer.setData("id",taskName);
+    const onDragStart = (e,id) => {
+        e.dataTransfer.setData("id",id);
     };
     
     const onDragOver = (e) => {
         e.preventDefault();
-        console.log("drag Over",e.dataTransfer.getData("id"));
     };
 
-    const onDrop = (e, taskName) => {
+    const updateTask = async(categoryId, taskId) => {
+        try
+        {
+            const response = await axios.put("/tasks",{
+                category_id : categoryId,
+                task_id : taskId
+            });
+
+            if(response.status === 200)
+            {
+                setLoadTask({
+                    loadTask : !loadTask
+                });
+            }
+        }
+        catch(err)
+        {
+            alert("Something went wrong");
+        }
+    }; 
+
+    const onDrop = (e, categoryId) => {
         e.stopPropagation();
         e.preventDefault();
-        console.log("drop Over", taskName);
+        updateTask(categoryId, e.dataTransfer.getData("id"));
     };
     
         return (
-        <div>
+        <div className = {name}  onDragOver  = {(e) => onDragOver(e)} onDrop = {(e) => onDrop(e, _id)}>
             {loading && <h1>Loading ....</h1>}
             {tasks.length ? tasks.map(task => 
                     <TaskDetails 
