@@ -11,13 +11,13 @@ $ cd client
 ```
 
 ```
-$ yarn install
+$ npm install
 ```
 
 ## To Start Server:
 
 ```
-$ yarn start
+$ npm start
 ```
 
 ## To Visit App:

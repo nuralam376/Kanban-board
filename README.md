@@ -46,7 +46,7 @@ Tasks - localhost:5000/api/tasks
 
 # Installation and Setup Instructions for frontend
 
-You will need node and yarn installed globally on your machine.
+You will need node and npm installed globally on your machine.
 
 ## Install dependencies
 
@@ -57,13 +57,13 @@ $ cd client
 ```
 
 ```
-$ yarn install
+$ npm install
 ```
 
 ## To Start Server:
 
 ```
-$ yarn start
+$ npm start
 ```
 
 ## To Visit App:
